@@ -79,7 +79,7 @@
                 "camara": "50Mpx",
                 "memoria": "120Gb",
                 "tProducto": "Movil"}, "cantidad": 10, "IdCategory": 1}],
-      "coords":{"longitud": 1, "latitud": 1}
+      "coords":{"longitud": 38.7968829, "latitud": -4.8669169}
     },
     {
       "cif": "134569",
@@ -109,7 +109,7 @@
                 "memoria": "50Gb",
                 "tProducto": "Camara"}, "cantidad": 4, "IdCategory": 2}
             ],
-      "coords":{"longitud": 2, "latitud": 2}
+      "coords":{"longitud": 38.776675, "latitud": -4.8377321}
     },
     {
       "cif": "789469",
@@ -161,7 +161,7 @@
                 "portatil": "Si",
                 "tProducto": "VideoConsola"}, "cantidad": 4, "IdCategory": 3}
             ],
-      "coords":{"longitud": 2, "latitud": 2}
+      "coords":{"longitud": 38.9860758, "latitud": -3.9444975}
   }]
   
   
