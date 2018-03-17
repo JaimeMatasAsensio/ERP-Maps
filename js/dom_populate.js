@@ -22,10 +22,15 @@ function initPopulate()
 
   var h2Cab = document.createElement("h2");
   h2Cab.setAttribute("id","titleStore");
-  h2Cab.className = "col-md-12";
+  h2Cab.className = "col-md-12 text-center";
   h2Cab.appendChild(document.createTextNode(Store.nombre));
   divCab.appendChild(h2Cab);
 
+  var divStoreMap = document.createElement("div");
+  divStoreMap.setAttribute("id","StoreMap");
+  divStoreMap.className = "maps map_store";
+  divCab.appendChild(divStoreMap);
+  myMap();
   var divTiendas = document.createElement("div");
   divTiendas.setAttribute("id","tiendas");
   divTiendas.className = "row";

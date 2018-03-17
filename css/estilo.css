@@ -124,7 +124,14 @@ nav{
   border-bottom-left-radius: 32px;
   border-top-right-radius: 32px;
 }
-
+.maps{
+  width: 80%;
+  height: 400px;
+  padding: 3px;
+  border-radius: 8px;
+  margin: 0 auto;
+  background-color: white;
+}
 .imgProDet{
   width: 100%;
 }

@@ -593,6 +593,16 @@ var StoreHouse = (function(){
         }
       }
 
+      this.getShopCoords = function()
+      /*Metodo para obtener un array con las coordenadas de cada tienda */
+      {
+        var arrayCoords = [];
+        _shops.forEach(function(element){
+          arrayCoords.push(element.coords);
+        });
+        return arrayCoords;
+      }
+
       this.getGlobalProduct = function(productId)
       /*Metodo para obtener el total de un producto en todo el ERP, devuelve un objeto literal*/
       {

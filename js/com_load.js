@@ -218,6 +218,8 @@ requestAjax.onreadystatechange = function(){//Cuando la solicitud recibe la resp
           var shop = iteStoreShops.next();
           while(!shop.done){
             console.log("Stock de la Tienda: "+shop.value.nombre);
+            console.log("Coordenadas");
+            console.log(shop.value.coords);
             var iteShop = shop.value.stockIte;
             var item = iteShop.next();
             while(!item.done){
