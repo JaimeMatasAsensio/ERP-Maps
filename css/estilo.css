@@ -132,6 +132,14 @@ nav{
   margin: 0 auto;
   background-color: white;
 }
+.mapShop_mini{
+  width: 100%;
+  height: 300px;
+}
+.mapShop_medium{
+  width: 85%;
+  height: 400px;
+}
 .imgProDet{
   width: 100%;
 }

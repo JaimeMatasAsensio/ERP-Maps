@@ -30,7 +30,7 @@ function initPopulate()
   divStoreMap.setAttribute("id","StoreMap");
   divStoreMap.className = "maps map_store";
   divCab.appendChild(divStoreMap);
-  myMap();
+  
   var divTiendas = document.createElement("div");
   divTiendas.setAttribute("id","tiendas");
   divTiendas.className = "row";
@@ -50,7 +50,12 @@ function initPopulate()
     h3Tienda.setAttribute("id","titleShop"+index);
     h3Tienda.appendChild(document.createTextNode(shop.value.nombre));
     divTienda.appendChild(h3Tienda);
-
+    
+    var divShopMap = document.createElement("div");
+    divShopMap.setAttribute("id",shop.value.cif);
+    divShopMap.className = "maps mapShop_mini";
+    divTienda.appendChild(divShopMap);
+    
     divTienda.appendChild(menuCategoryShopPopulate(shop.value));
 
     var BtnVerTienda = document.createElement("button");
@@ -65,6 +70,8 @@ function initPopulate()
     index++;
     shop = shopsIte.next();
   }
+
+  myMap();
 
 }
 
@@ -89,20 +96,37 @@ function shopPopulate(shop)
     h2Cab.appendChild(document.createTextNode(tienda.nombre));
     divCab.appendChild(h2Cab);
 
+    var divinfoShop = document.createElement("div");
+    divinfoShop.className = "row";
+    IdMainCont.appendChild(divinfoShop);
+
+    var divInfoShopText = document.createElement("div");
+    divInfoShopText.className = "col-md-2";
+    divinfoShop.appendChild(divInfoShopText);
+
+    var divInfoShopMap = document.createElement("div");
+    divInfoShopMap.className = "col-md-10";
+    divinfoShop.appendChild(divInfoShopMap);
+
+    var divMapShop = document.createElement("div");
+    divMapShop.className = "maps mapShop_medium";
+    divMapShop.setAttribute("id",shop.cif);
+    divInfoShopMap.appendChild(divMapShop);
+
     var infoTienda = document.createElement("p");
     infoTienda.className = "infoTienda";
     infoTienda.innerHTML = "Cif: "+tienda.cif;
-    IdMainCont.appendChild(infoTienda);
+    divInfoShopText.appendChild(infoTienda);
 
     var infoTienda1 = document.createElement("p");
     infoTienda1.className = "infoTienda";
     infoTienda1.innerHTML = "Direccion: "+tienda.direccion;
-    IdMainCont.appendChild(infoTienda1);
+    divInfoShopText.appendChild(infoTienda1);
 
     var infoTienda2 = document.createElement("p");
     infoTienda2.className = "infoTienda";
     infoTienda2.innerHTML = "Telefono: "+tienda.telefono;
-    IdMainCont.appendChild(infoTienda2);
+    divInfoShopText.appendChild(infoTienda2);
 
     var divProductos = document.createElement("div");
     divProductos.setAttribute("id","items");
@@ -190,6 +214,8 @@ function shopPopulate(shop)
 
 
     BtnAtras.addEventListener("click",initPopulate);
+
+    myMap();
   };
 
 }
