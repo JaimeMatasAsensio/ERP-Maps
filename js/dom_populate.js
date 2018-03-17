@@ -151,7 +151,15 @@ function shopPopulate(shop)
 
       var imgPro = document.createElement("img");
       imgPro.setAttribute("src",item.value.producto.imagenes);
+      imgPro.setAttribute("id",item.value.producto.SN +";"+tienda.cif);
+      imgPro.setAttribute("draggable","true");
       imgPro.className = "imgPro";
+      
+      //Si hay un suario registrado habilitamos el producto para que se pueda borrar mediante drag&drop
+      if(document.cookie){
+        imgPro.addEventListener("dragstart",dragProduct);
+      }
+
       divImg.appendChild(imgPro);
 
       var divInfo = document.createElement("div");
@@ -195,6 +203,20 @@ function shopPopulate(shop)
       BtnVerProducto.appendChild(document.createTextNode("Ver Producto"));
       divInfo.appendChild(BtnVerProducto);
       BtnVerProducto.addEventListener("click",ProductInWindowFromShop(shop,item.value.producto.IdProduct));
+      
+      //Si hay un suario registrado habilitamos el producto para que se pueda borrar mediante drag&drop
+      if(document.cookie){
+        var BtnDropProducto = document.createElement("button");
+        BtnDropProducto.className = "btn btn-danger";
+        BtnDropProducto.style.marginLeft = "4px";
+        var spanIcon = document.createElement("span");
+        spanIcon.className = "glyphicon glyphicon-trash";
+        BtnDropProducto.appendChild(spanIcon);
+
+        divInfo.appendChild(BtnDropProducto);
+        BtnDropProducto.addEventListener("dragover",allowDropProduct);
+        BtnDropProducto.addEventListener("drop",dropProduct);
+      }
 
       item = stockShop.next();
     }

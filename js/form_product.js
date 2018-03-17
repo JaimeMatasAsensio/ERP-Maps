@@ -794,6 +794,49 @@ function checkRemoveProduct()
   }
 }
 
+function checkRemoveProductDragDrop(value)
+/*Funcion para remover productos de una tienda mediante Drag and Drop*/
+{
+  console.log(value);
+  var targetRemove = value.split(";")
+  var target = targetRemove[1];
+  var targetPro = targetRemove[0];
+
+  //Variables de conexion a la indexedDB
+  var db;
+  var db_name = "ManchaStore";
+  var request = indexedDB.open(db_name,1);
+  try {
+    
+      request.onsuccess = function(event){//Si la conexion tuvo exito....
+        db = event.target.result;//Otenemos la indexedDB
+        var almacenShops = db.transaction(["shops"],"readwrite").objectStore("shops")//Iniciamos una transaccion sobre el almacen shops en modo read write, obtenemos el alamacen de objetos shops
+        var requestTarget = almacenShops.get(target);//Otenemos la tienda de donde se eliminara el producto
+        requestTarget.onsuccess = function(event){// si la obtencion tuvo exito...
+          var shop = requestTarget.result;//Guardamos el objeto tienda
+          var i = shop.stock.findIndex(function(element){//Buscamos el producto dentro del array stock de la tienda
+            return element.producto.sn == targetPro;
+          });
+          if(i != -1){
+            shop.stock.splice(i,1);//Eliminamos el producto del array
+             var requestDel = almacenShops.put(shop);//Devolvemos la tienda modificada con el producto eliminado
+             requestDel.onsuccess = function(event){
+               console.log("Se ha eliminado un producto de una tienda");
+             };
+          }else{
+            console.log("No se encuentra el producto en la tienda...");
+          }
+      };
+      var shop = Store.getShopByCif(target);
+      shop.RemoveProduct(targetPro);
+      shopPopulate(shop)();
+      WriteSuccessModal("Producto Eliminado!!","Se ha eliminado un producto de la tienda " + shop.nombre);
+    }
+  } catch (e) {
+    WriteErrorModal(e.message);
+  }
+}
+
 
 
 
